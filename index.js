@@ -144,7 +144,7 @@ let result = 0 // счетчик icq
 let step = 0 // шаг прогресс бар
 
 // переменные для временных DOM-элементов
-let pick, pickQuestion, pickAnswer, label, input, next, nextButton, imgInfo
+let pick, pickQuestion, pickAnswer, label, input, next, nextButton, imgInfo, span, div
 
 const creatingQuestion = (percent, question, answers) => { // создание блоков c вопросами
     scene.innerHTML = '' // очищаем сцену перед каждым слайдом
@@ -174,10 +174,10 @@ const creatingQuestion = (percent, question, answers) => { // создание �
     // в зависимости от типа вопроса, делаем разную структуру
     if (arrayQuiz[counter][2] === 'фигуры') { // проверка через значение массива
         for (let i = 0; i < answers.length; i++) {
-            creatingInput()
-
+            creatingInput() // функция добавления инпутов и лейблов
             pickAnswer.classList.add('pick__answers_figure')
             label.style.width = `${100/(answers.length+1)}%`
+            label.setAttribute('for', 'answer_' + i)
             input.setAttribute('value', 'answer_' + i)
             input.id = 'answer_' + i
 
@@ -185,46 +185,37 @@ const creatingQuestion = (percent, question, answers) => { // создание �
                 pickQuestion.innerHTML = question + '<br><img src="img/' + arrayQuiz[counter][3] + '">'
             }
             label.innerText = answers[i][0]
-            label.insertBefore(input, label.firstChild)
-            pickAnswer.appendChild(label)
         }
     } else if (arrayQuiz[counter][2] === 'цвета') {
         for (let i = 0; i < answers.length; i++) { 
             creatingInput()
-
             pickAnswer.classList.add('pick__answers_color')
-            label.classList.add('pick__answer_color')
+            div.classList.add('pick__answer_color')
             label.style.backgroundColor = answers[i][0];
+            label.setAttribute('for', 'answer_' + i)
             input.setAttribute('value', 'answer_' + i)
             input.id = 'answer_' + i
-            label.insertBefore(input, label.firstChild)
-            pickAnswer.appendChild(label)
         }
     } else if (arrayQuiz[counter][2] === 'картинка') {
         for (let i = 0; i < answers.length; i++) { 
             creatingInput()
-
             pickAnswer.classList.add('pick__answers')
+            label.setAttribute('for', 'answer_' + i)
             input.setAttribute('value', 'answer_' + i)
             input.id = 'answer_' + i
-
             if (arrayQuiz[counter][3] !== undefined) { //проверка на наличие картинки
                 pickQuestion.innerHTML = question + '<br><img src="img/' + arrayQuiz[counter][3] + '">'
             }
             label.innerText = answers[i][0]
-            label.insertBefore(input, label.firstChild)
-            pickAnswer.appendChild(label)
         }
     } else {
         for (let i = 0; i < answers.length; i++) {
-            creatingInput()
-            
+            creatingInput()     
             pickAnswer.classList.add('pick__answers')
+            label.setAttribute('for', 'answer_' + i)
             input.setAttribute('value', 'answer_' + i)
             input.id = 'answer_' + i
             label.innerText = answers[i][0]
-            label.insertBefore(input, label.firstChild)
-            pickAnswer.appendChild(label)
         }
     }
 
@@ -241,15 +232,17 @@ const creatingQuestion = (percent, question, answers) => { // создание �
 }
 
 const creatingInput = () => { // создание инпутов и лейблов в каждом слайде
+    div = document.createElement('div')
     label = document.createElement('label')
-    label.classList.add('pick__answer')
+    div.classList.add('pick__answer')
     input = document.createElement('input')
     input.setAttribute('type', 'radio')
     input.setAttribute('name', 'radio')
     pick.appendChild(pickQuestion)
     pick.appendChild(pickAnswer)
-    label.insertBefore(input, label.firstChild)
-    pickAnswer.appendChild(label)
+    div.appendChild(input)
+    div.appendChild(label)
+    pickAnswer.appendChild(div)
 }
 
 const nextSlide = (answers) => { // следующий слайд
@@ -277,7 +270,7 @@ const nextSlide = (answers) => { // следующий слайд
 }
 
 const finishQuiz = () => { // конец квиза
-    pick.innerHTML = 'Обработка Результатов' + '<div class="pick__rotate"></div>' + '<div class="pick__download">Определение стиля мышления.</div>'
+    pick.innerHTML = 'Обработка Результатов' + '<div class="last__rotate"></div>' + '<div class="last__download">Определение стиля мышления.</div>'
     next.style.display = 'none'
     barProgress.style.width = '100%'
     pick.style.height = 'max-content' // 
@@ -297,7 +290,7 @@ const lastSlide = () => { // последний слайд
 
     bar.style.display = 'none' // убираем бар
     info.innerText = 'Готово!' // меняем шапку
-    pick.innerHTML = '' // очищаем сцену
+    scene.innerHTML = '' // очищаем сцену
 
     let lastTitle = document.createElement('div') // заголовок
     lastTitle.classList.add('last__title')
@@ -339,17 +332,17 @@ const lastSlide = () => { // последний слайд
     let forLightningLeft = document.createElement('div') // молния
     forLightningLeft.classList.add('for__lightning_left')
 
-    pick.appendChild(lastTitle)
-    pick.appendChild(lastDiscribe)
-    pick.appendChild(lastSubtitle)
-    pick.appendChild(lastAgenda)
+    scene.appendChild(lastTitle)
+    scene.appendChild(lastDiscribe)
+    scene.appendChild(lastSubtitle)
+    scene.appendChild(lastAgenda)
     lastRecord.appendChild(timer)
     lastRecord.appendChild(text)
-    pick.appendChild(lastRecord)
-    pick.appendChild(lastCallButton)
-    pick.appendChild(lastFooter)
-    pick.appendChild(forLightningLeft)
-    pick.appendChild(forLightning)
+    scene.appendChild(lastRecord)
+    scene.appendChild(lastCallButton)
+    scene.appendChild(lastFooter)
+    scene.appendChild(forLightningLeft)
+    scene.appendChild(forLightning)
 
     let second = 59 // количество секунд
     let minuts = 9 // количество минут
@@ -372,9 +365,8 @@ const lastSlide = () => { // последний слайд
     }, 1000)
 
     lastCallButton.addEventListener('click', function(){ // функция на кнопку "позвонить"
-        
-        pick.innerHTML = '' // очищаем слайд
-        pick.style.height = '90vh'
+        scene.style.height = '90vh'
+        scene.innerHTML = '' // очищаем слайд
 
         let dataResult, dataNameResult, keyReplace;
         fetch('https://swapi.dev/api/people/1/') // ссылка на json
@@ -385,12 +377,12 @@ const lastSlide = () => { // последний слайд
                         if (json[key].substring(0, 5) !== 'https') {
                             keyReplace = key.replace(/\_/, ' ') // замена '_' на пробелы
                             dataResult = document.createElement('div')
-                            dataResult.classList.add('pick__result')
+                            dataResult.classList.add('last__result')
                             dataNameResult = document.createElement('span')
                             dataResult.appendChild(dataNameResult)
                             dataNameResult.append( `${keyReplace}` )
                             dataResult.append( ` - ${json[key]}` )
-                            pick.appendChild(dataResult)
+                            scene.appendChild(dataResult)
                         }
                     }
                 }
@@ -424,4 +416,3 @@ for (let i = 0; i < startButton.length; i++) {
 menu.addEventListener('click', visibleOverlay)
 
 closeButton.addEventListener('click', visibleOverlay)
-
