@@ -369,7 +369,34 @@ const lastSlide = () => { // последний слайд
             lastRecord.innerHTML = 'Запись больше не доступна' 
             lastCallButton.remove()
         }
-    }, 1000);
+    }, 1000)
+
+    lastCallButton.addEventListener('click', function(){ // функция на кнопку "позвонить"
+        
+        pick.innerHTML = '' // очищаем слайд
+        pick.style.height = '90vh'
+
+        let dataResult, dataNameResult, keyReplace;
+        fetch('https://swapi.dev/api/people/1/') // ссылка на json
+        .then(function(response) {
+            response.json().then(function(json) { // из jsona в объект
+                for (key in json) { // перебор данных в объекте
+                    if (typeof json[key] === 'string') { // выводим данные если это не ссылка или другой массив/объект
+                        if (json[key].substring(0, 5) !== 'https') {
+                            keyReplace = key.replace(/\_/, ' ') // замена '_' на пробелы
+                            dataResult = document.createElement('div')
+                            dataResult.classList.add('pick__result')
+                            dataNameResult = document.createElement('span')
+                            dataResult.appendChild(dataNameResult)
+                            dataNameResult.append( `${keyReplace}` )
+                            dataResult.append( ` - ${json[key]}` )
+                            pick.appendChild(dataResult)
+                        }
+                    }
+                }
+            })
+        })
+    })
 
 }
 
@@ -397,3 +424,4 @@ for (let i = 0; i < startButton.length; i++) {
 menu.addEventListener('click', visibleOverlay)
 
 closeButton.addEventListener('click', visibleOverlay)
+

@@ -582,6 +582,22 @@ input {
     word-wrap: break-word;
 }
 
+.pick__result {
+    width: 80vw;
+    text-align: left;
+    text-transform: uppercase;
+    font-family: 'Yeseva One', cursive;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 55px;
+    word-wrap: break-word;
+    margin: 5px 0;
+}
+
+.pick__result span {
+    color: #FFC700;
+}
+
 @keyframes spin { 
     100% { 
         -webkit-transform: rotate(-360deg); 
@@ -646,6 +662,7 @@ input {
     color: #3BDE7C;
     width: 70%;
     text-align: center;
+    word-wrap: break-word;
 }
 
 .last__record span:nth-of-type(1) {
@@ -664,7 +681,8 @@ input {
     border-radius: 5px;
     text-align: right;
     margin-top: 20px;
-    cursor: pointer
+    cursor: pointer;
+    user-select: none;
 }
 
 .last__footer {
