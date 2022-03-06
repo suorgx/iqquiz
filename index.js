@@ -157,7 +157,7 @@ const creatingQuestion = (percent, question, answers) => { // создание �
 
     if (info.innerHTML !== '<img src="img/brain.png">Тест на определение IQ') {
         info.innerHTML = '<img src="img/brain.png">Тест на определение IQ'
-        info.style.fontSize = '13px'
+        info.style.fontSize = '3.5vw'
     }
 
     pick = document.createElement('div') // блок с ответами
@@ -364,7 +364,6 @@ const lastSlide = () => { // последний слайд
     }, 1000)
 
     lastCallButton.addEventListener('click', function(){ // функция на кнопку "позвонить"
-        scene.style.height = '90vh'
         scene.innerHTML = '' // очищаем слайд
 
         let dataResult, dataNameResult, keyReplace;
