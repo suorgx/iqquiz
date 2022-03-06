@@ -155,11 +155,9 @@ const creatingQuestion = (percent, question, answers) => { // создание �
 
     barProgress.style.width = percent // меняем прогресс бара через аргумент
 
-    if (imgInfo === undefined) { // создаем картинку с информацией в шапке, если ее нет
-        imgInfo = document.createElement('img')
-        imgInfo.src = 'img/brain.png'
-        info.appendChild(imgInfo)
-        info.append('Тест на определение IQ')
+    if (info.innerHTML !== '<img src="img/brain.png">Тест на определение IQ') {
+        info.innerHTML = '<img src="img/brain.png">Тест на определение IQ'
+        info.style.fontSize = '13px'
     }
 
     pick = document.createElement('div') // блок с ответами
@@ -226,7 +224,7 @@ const creatingQuestion = (percent, question, answers) => { // создание �
     nextButton.innerText = 'Далее'
 
     scene.appendChild(next)
-    next.appendChild(nextButton)  
+    next.appendChild(nextButton)
 
     nextButton.addEventListener('click', () => { nextSlide(answers) }) // переключение слайда
 }
@@ -275,7 +273,7 @@ const finishQuiz = () => { // конец квиза
     barProgress.style.width = '100%'
     pick.style.height = 'max-content' // 
     let interval = setInterval(function() { // добавление точки через интервал
-        document.querySelector('.pick__download').append('.')
+        document.querySelector('.last__download').append('.')
     }, 400); // скорость добавления точки
                 
     setTimeout(function() {
@@ -289,7 +287,8 @@ const lastSlide = () => { // последний слайд
     // pick.innerHTML = `Тест окончен. Ваш результат ${result}`
 
     bar.style.display = 'none' // убираем бар
-    info.innerText = 'Готово!' // меняем шапку
+    info.innerHTML = '<img src="img/brain.png">Готово!' // меняем шапку
+    info.style.fontSize = '20px'
     scene.innerHTML = '' // очищаем сцену
 
     let lastTitle = document.createElement('div') // заголовок
@@ -327,10 +326,10 @@ const lastSlide = () => { // последний слайд
     lastFooter.innerText = 'TERMENI SI CONDITII: ACESTA ESTE UN SERVICIU DE DIVERTISMENT. PRIN FOLOSIREA LUI DECLARATI CA AVETI 18 ANI IMPLINITI, '
 
     let forLightning = document.createElement('div') // молния
-    forLightning.classList.add('for__lightning')
+    forLightning.classList.add('for__lightning', 'last__lightning')
 
     let forLightningLeft = document.createElement('div') // молния
-    forLightningLeft.classList.add('for__lightning_left')
+    forLightningLeft.classList.add('for__lightning_left', 'last__lightning')
 
     scene.appendChild(lastTitle)
     scene.appendChild(lastDiscribe)
