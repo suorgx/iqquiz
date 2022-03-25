@@ -170,10 +170,7 @@ body {
     justify-content: center;
     flex-direction: column;
 }
-.content__first,
-.content__second,
-.content__third,
-.content__for {
+.content__first {
     text-align: center;
     width: 80%;
     padding: 0 10%;
@@ -182,8 +179,7 @@ body {
     justify-content: center;
     flex-direction: column;
 }
-.content__first,
-.content__for {
+.content__first {
     color: #fff;
     background: transparent url(img/back.jpeg) no-repeat center / cover;
     position: relative;
@@ -218,6 +214,7 @@ body {
     font-size: 15px;
     line-height: 19px;
     color: #FFC700;
+    margin-bottom: 20px;
 }
 .first__discribe span {
     color: #fff;
@@ -264,11 +261,6 @@ body {
     margin-bottom: 25px;
     user-select: none;
 }
-.content__for .button {
-    background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
-}
 .next__button {
     background: #DADADA;
     color: #8E8E8E;
@@ -278,118 +270,6 @@ body {
     background: #DADADA;
     box-shadow: inset 0px 10px 10px rgb(0 0 0 / 25%);
     opacity: 0.8;
-}
-.content__for .button:hover {
-    background: transparent;
-}
-.content__second {
-    background: transparent url(img/second.png) no-repeat center / cover;
-}
-.second__discribe {
-    background: transparent url(img/secondbackg.png) no-repeat center / 93%;
-    font-family: 'Yeseva One', cursive;
-    font-weight: normal;
-    font-size: 18px;
-    width: 70%;
-    line-height: 23px;
-    text-align: center;
-    color: #FFFFFF;
-    margin: 45px 0;
-    padding: 30px 40px;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-.second__discribe::after,
-.second__discribe::before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    z-index: 0;
-    width: 23px;
-    height: 22px;
-}
-.second__discribe::before {
-    top: 0;
-    left: 15px;
-    background: transparent url(img/2.png) no-repeat center / 100%;
-}
-.second__discribe::after {
-    bottom: 0;
-    right: 15px;
-    background: transparent url(img/1.png) no-repeat center / 100%;
-}
-.content__third {
-    background: #F3F3F2;
-}
-.third__discribe {
-    font-family: 'PT Serif', serif;
-    font-weight: normal;
-    font-size: 21px;
-    line-height: 27px;
-    color: #272727;
-    text-align: left;
-    margin-top: 38px;
-}
-.third__discribe span {
-    text-transform: uppercase;
-    font-weight: 700;
-}
-.third__discribe span span {
-    text-transform: none;
-}
-.third__image {
-    margin-top: 38px;
-    width: 80%;
-    height: 17vh;
-    background: transparent url(img/third.png) no-repeat center / 100%;
-}
-.for__discribe {
-    font-family: 'Merriweather', serif;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 20px;
-    text-align: left;
-    color: #FFFFFF;
-    margin-top: 50px;
-}
-.for__discribe span {
-    color: #FFC700;
-}
-.for__window {
-    background: rgba(243, 243, 242, 0.8);
-    border-radius: 20px;
-    font-family: 'Merriweather', serif;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 23px;
-    text-align: left;
-    color: #181818;
-    padding: 30px 10px;
-    margin: 20px 0 43px;
-}
-.for__window span {
-    font-weight: 700;
-}
-.for__year {
-    margin: 52px 0 13px;
-    font-size: 10px;
-    line-height: 23px;
-    color: rgba(256, 256, 256, 0.5);
-}
-.for__lightning,
-.for__lightning_left {
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    right: -20px;
-    top: 10%;
-    background: transparent url(img/lightning.png) no-repeat center / 83%;
-}
-.for__lightning_left {
-    left: -20px;
-    top: 50%;
-    transform: scale(-1, 1)
 }
 .bar,
 .pick,
@@ -782,59 +662,6 @@ input {
     
     .button:hover {
         box-shadow: inset 0px 2.6vw 2.6vw rgb(0 0 0 / 25%);
-    }   
-    .second__discribe {
-        font-size: 4.8vw;
-        line-height: 6.1vw;
-        margin: 12vw 0;
-        padding: 8vw 10vw;
-    }
-    .second__discribe::after,
-    .second__discribe::before {
-        width: 6.1vw;
-        height: 5.8vw;
-    }
-    .second__discribe::before {
-        left: 4vw;
-    }
-
-    .second__discribe::after {
-        right: 4vw;
-    }
-    .third__discribe {
-        font-size: 5.6vw;
-        line-height: 7.2vw;
-        margin-top: 10.1vw;
-    }
-    .third__image {
-        margin: 5vw;
-        height: 20vh;
-        background: transparent url(img/third.png) no-repeat center 10px / 90%;
-    }
-    .for__discribe {
-        font-size: 4vw;
-        line-height: 5.3vw;
-        margin-top: 13.3vw;
-    }
-    .for__window {
-        font-size: 4.2vw;
-        line-height: 6.1vw;
-        padding: 8vw 2.6vw;
-        margin: 5.3vw 0 11.4vw;
-    }
-    .for__year {
-        margin: 13.8vw 0 3.4vw;
-        font-size: 2.6vw;
-        line-height: 6.1vw;
-    }
-    .for__lightning,
-    .for__lightning_left {
-        width: 40vw;
-        height: 40vw;
-        right: -5.3vw;
-    }
-    .for__lightning_left {
-        left: -5.3vw;
     }
     .bar__progress {
         height: 2.9vw;
@@ -970,9 +797,5 @@ input {
         width: 7.6vw;
         height: 7.6vw;
         margin-right: 3vw;
-    }
-    .third__image {
-        height: 30vh;
-        background: transparent url(img/third.png) no-repeat center 10px / 85%;
     }
 }
