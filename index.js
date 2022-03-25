@@ -363,31 +363,33 @@ const lastSlide = () => { // последний слайд
         }
     }, 1000)
 
-    lastCallButton.addEventListener('click', function(){ // функция на кнопку "позвонить"
-        scene.innerHTML = '' // очищаем слайд
+    lastCallButton.addEventListener('click', getResult)
 
-        let dataResult, dataNameResult, keyReplace;
-        fetch('https://swapi.dev/api/people/1/') // ссылка на json
-        .then(function(response) {
-            response.json().then(function(json) { // из jsona в объект
-                for (key in json) { // перебор данных в объекте
-                    if (typeof json[key] === 'string') { // выводим данные если это не ссылка или другой массив/объект
-                        if (json[key].substring(0, 5) !== 'https') {
-                            keyReplace = key.replace(/\_/, ' ') // замена '_' на пробелы
-                            dataResult = document.createElement('div')
-                            dataResult.classList.add('last__result')
-                            dataNameResult = document.createElement('span')
-                            dataResult.appendChild(dataNameResult)
-                            dataNameResult.append( `${keyReplace}` )
-                            dataResult.append( ` - ${json[key]}` )
-                            scene.appendChild(dataResult)
-                        }
+}
+
+const getResult = () =>{ // функция на кнопку "позвонить"
+    scene.innerHTML = '' // очищаем слайд
+
+    let dataResult, dataNameResult, keyReplace;
+    fetch('https://swapi.dev/api/people/1/') // ссылка на json
+    .then(function(response) {
+        response.json().then(function(json) { // из jsona в объект
+            for (key in json) { // перебор данных в объекте
+                if (typeof json[key] === 'string') { // выводим данные если это не ссылка или другой массив/объект
+                    if (json[key].substring(0, 5) !== 'https') {
+                        keyReplace = key.replace(/\_/, ' ') // замена '_' на пробелы
+                        dataResult = document.createElement('div')
+                        dataResult.classList.add('last__result')
+                        dataNameResult = document.createElement('span')
+                        dataResult.appendChild(dataNameResult)
+                        dataNameResult.append( `${keyReplace}` )
+                        dataResult.append( ` - ${json[key]}` )
+                        scene.appendChild(dataResult)
                     }
                 }
-            })
+            }
         })
     })
-
 }
 
 const visibleOverlay = () => { // видимость оверлей меню

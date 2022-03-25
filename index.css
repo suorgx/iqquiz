@@ -156,6 +156,7 @@ body {
     align-items: center;
     flex-direction: column;
     height: max-content;
+    justify-content: center;
 }
 .content {
     width: 100%;
